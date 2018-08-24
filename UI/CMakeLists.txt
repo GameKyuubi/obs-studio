@@ -46,6 +46,7 @@ configure_file(
 set(CMAKE_INCLUDE_CURRENT_DIR TRUE)
 set(CMAKE_AUTOMOC TRUE)
 
+find_package(Qt5Widgets ${FIND_MODE})
 find_package(Qt5Svg ${FIND_MODE})
 find_package(Qt5Xml ${FIND_MODE})
 
@@ -63,7 +64,6 @@ if(NOT Qt5Widgets_FOUND)
 		return()
 	endif()
 endif()
-
 
 include_directories(${FFMPEG_INCLUDE_DIRS})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
@@ -245,7 +245,10 @@ set(obs_SOURCES
 	remote-text.cpp
 	audio-encoders.cpp
 	qt-wrappers.cpp
-	log-viewer.cpp)
+	log-viewer.cpp
+	obs-proxy-style.cpp
+	locked-checkbox.cpp
+	visibility-checkbox.cpp)
 
 set(obs_HEADERS
 	${obs_PLATFORM_HEADERS}
@@ -310,7 +313,8 @@ set(obs_HEADERS
 	audio-encoders.hpp
 	qt-wrappers.hpp
 	clickable-label.hpp
-	log-viewer.hpp)
+	log-viewer.hpp
+	obs-proxy-style.hpp)
 
 set(obs_importers_HEADERS
 	importers/importers.hpp)
