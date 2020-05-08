@@ -56,6 +56,7 @@
 #include "volume-control.hpp"
 #include "remote-text.hpp"
 #include "ui-validation.hpp"
+#include "media-controls.hpp"
 #include <fstream>
 #include <sstream>
 
@@ -1817,6 +1818,7 @@ void OBSBasic::OBSInit()
 
 	const char *dockStateStr = config_get_string(
 		App()->GlobalConfig(), "BasicWindow", "DockState");
+
 	if (!dockStateStr) {
 		on_resetUI_triggered();
 	} else {
@@ -2868,6 +2870,7 @@ void OBSBasic::UpdateContextBar()
 		OBSSceneItem item = GetCurrentSceneItem();
 
 		obs_source_t *source = obs_sceneitem_get_source(item);
+		ui->mediaControls->SetSource(source);
 		const char *name = obs_source_get_name(source);
 		ui->contextSourceLabel->setText(name);
 
@@ -2894,6 +2897,7 @@ void OBSBasic::UpdateContextBar()
 		ui->sourceFiltersButton->setEnabled(true);
 		ui->sourcePropertiesButton->setEnabled(true);
 	} else {
+		ui->mediaControls->SetSource(nullptr);
 		ui->contextSourceLabel->setText(
 			QTStr("ContextBar.NoSelectedSource"));
 		ui->contextVisibilityCheckBox->setEnabled(false);

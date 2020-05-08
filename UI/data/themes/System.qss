@@ -314,3 +314,29 @@ QPushButton#sourceCenterButton {
 QPushButton#sourceEditTransformButton {
     qproperty-icon: url(./Dark/edit_transform.svg);
 }
+
+/* Media icons */
+
+* [themeID="playIcon"] {
+    qproperty-icon: url(:res/images/media/media_play.svg);
+}
+
+* [themeID="pauseIcon"] {
+    qproperty-icon: url(:/res/images/media/media_pause.svg);
+}
+
+* [themeID="restartIcon"] {
+    qproperty-icon: url(:/res/images/media/media_restart.svg);
+}
+
+* [themeID="stopIcon"] {
+    qproperty-icon: url(:/res/images/media/media_stop.svg);
+}
+
+* [themeID="nextIcon"] {
+    qproperty-icon: url(:/res/images/media/media_next.svg);
+}
+
+* [themeID="previousIcon"] {
+    qproperty-icon: url(./Dark/media/media_previous.svg);
+}

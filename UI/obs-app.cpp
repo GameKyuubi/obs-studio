@@ -484,6 +484,10 @@ bool OBSApp::InitGlobalConfigDefaults()
 	config_set_default_bool(globalConfig, "Video", "ResetOSXVSyncOnExit",
 				true);
 #endif
+
+	config_set_default_bool(globalConfig, "BasicWindow",
+				"MediaControlsCountdownTimer", true);
+
 	return true;
 }
 
