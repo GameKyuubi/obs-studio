@@ -25,7 +25,10 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
    <property name="leftMargin">
     <number>0</number>
    </property>
@@ -38,241 +41,238 @@
    <property name="bottomMargin">
     <number>0</number>
    </property>
-   <property name="spacing">
-    <number>0</number>
-   </property>
-   <item row="0" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <property name="spacing">
-      <number>4</number>
+   <item>
+    <widget class="QPushButton" name="playPauseButton">
+     <property name="minimumSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
      </property>
-     <property name="leftMargin">
-      <number>0</number>
+     <property name="maximumSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
      </property>
-     <property name="topMargin">
-      <number>0</number>
+     <property name="toolTip">
+      <string>ContextBar.MediaControls.RestartMedia</string>
      </property>
-     <property name="rightMargin">
-      <number>0</number>
+     <property name="text">
+      <string/>
      </property>
-     <property name="bottomMargin">
-      <number>0</number>
+     <property name="icon">
+      <iconset resource="obs.qrc">
+       <normaloff>:/res/images/media/media_restart.svg</normaloff>:/res/images/media/media_restart.svg</iconset>
      </property>
-     <item>
-      <widget class="QPushButton" name="playPauseButton">
-       <property name="minimumSize">
-        <size>
-         <width>24</width>
-         <height>24</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>24</width>
-         <height>24</height>
-        </size>
-       </property>
-       <property name="toolTip">
-        <string>RestartMedia</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="obs.qrc">
-         <normaloff>:/res/images/media/media_restart.svg</normaloff>:/res/images/media/media_restart.svg</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="shortcut">
-        <string>Space</string>
-       </property>
-       <property name="flat">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>8</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="previousButton">
-       <property name="minimumSize">
-        <size>
-         <width>24</width>
-         <height>24</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>24</width>
-         <height>24</height>
-        </size>
-       </property>
-       <property name="toolTip">
-        <string>PlaylistPrevious</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="obs.qrc">
-         <normaloff>:/res/images/media/media_previous.svg</normaloff>:/res/images/media/media_previous.svg</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="shortcut">
-        <string>P</string>
-       </property>
-       <property name="flat">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="stopButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>24</width>
-         <height>24</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>24</width>
-         <height>24</height>
-        </size>
-       </property>
-       <property name="toolTip">
-        <string>StopMedia</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="obs.qrc">
-         <normaloff>:/res/images/media/media_stop.svg</normaloff>:/res/images/media/media_stop.svg</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="shortcut">
-        <string>S</string>
-       </property>
-       <property name="flat">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="nextButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>24</width>
-         <height>24</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>24</width>
-         <height>24</height>
-        </size>
-       </property>
-       <property name="toolTip">
-        <string>Playlist Next</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="obs.qrc">
-         <normaloff>:/res/images/media/media_next.svg</normaloff>:/res/images/media/media_next.svg</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="shortcut">
-        <string>N</string>
-       </property>
-       <property name="flat">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="MediaSlider" name="slider">
-       <property name="maximum">
-        <number>1024</number>
-       </property>
-       <property name="tracking">
-        <bool>false</bool>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="timerLabel">
-       <property name="text">
-        <string>--:--:--</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>/</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="ClickableLabel" name="durationLabel">
-       <property name="text">
-        <string>--:--:--</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="shortcut">
+      <string>Space</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>8</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QPushButton" name="previousButton">
+     <property name="minimumSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
+     </property>
+     <property name="toolTip">
+      <string>ContextBar.MediaControls.PlaylistPrevious</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="obs.qrc">
+       <normaloff>:/res/images/media/media_previous.svg</normaloff>:/res/images/media/media_previous.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="shortcut">
+      <string>P</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="stopButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
+     </property>
+     <property name="toolTip">
+      <string>ContextBar.MediaControls.StopMedia</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="obs.qrc">
+       <normaloff>:/res/images/media/media_stop.svg</normaloff>:/res/images/media/media_stop.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="shortcut">
+      <string>S</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="nextButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
+     </property>
+     <property name="toolTip">
+      <string>ContextBar.MediaControls.PlaylistNext</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="obs.qrc">
+       <normaloff>:/res/images/media/media_next.svg</normaloff>:/res/images/media/media_next.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="shortcut">
+      <string>N</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="MediaSlider" name="slider">
+     <property name="accessibleName">
+      <string>ContextBar.MediaControls.BlindSeek</string>
+     </property>
+     <property name="maximum">
+      <number>1024</number>
+     </property>
+     <property name="tracking">
+      <bool>false</bool>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>6</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QLabel" name="timerLabel">
+     <property name="text">
+      <string>--:--:--</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>/</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="ClickableLabel" name="durationLabel">
+     <property name="text">
+      <string>--:--:--</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

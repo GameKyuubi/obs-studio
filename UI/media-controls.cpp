@@ -1,3 +1,4 @@
+#include "window-basic-main.hpp"
 #include "media-controls.hpp"
 #include "obs-app.hpp"
 #include <QToolTip>
@@ -60,12 +61,22 @@ MediaControls::MediaControls(QWidget *parent)
 
 bool MediaControls::MediaPaused()
 {
+	OBSSource source = OBSGetStrongRef(weakSource);
+	if (!source) {
+		return false;
+	}
+
 	obs_media_state state = obs_source_media_get_state(source);
 	return state == OBS_MEDIA_STATE_PAUSED;
 }
 
 int64_t MediaControls::GetSliderTime(int val)
 {
+	OBSSource source = OBSGetStrongRef(weakSource);
+	if (!source) {
+		return 0;
+	}
+
 	float percent = (float)val / (float)ui->slider->maximum();
 	float duration = (float)obs_source_media_get_duration(source);
 	int64_t seekTo = (int64_t)(percent * duration);
@@ -75,6 +86,11 @@ int64_t MediaControls::GetSliderTime(int val)
 
 void MediaControls::MediaSliderClicked()
 {
+	OBSSource source = OBSGetStrongRef(weakSource);
+	if (!source) {
+		return;
+	}
+
 	obs_media_state state = obs_source_media_get_state(source);
 
 	if (state == OBS_MEDIA_STATE_PAUSED) {
@@ -91,6 +107,11 @@ void MediaControls::MediaSliderClicked()
 
 void MediaControls::MediaSliderReleased()
 {
+	OBSSource source = OBSGetStrongRef(weakSource);
+	if (!source) {
+		return;
+	}
+
 	if (seekTimer.isActive()) {
 		seekTimer.stop();
 		if (lastSeek != seek) {
@@ -122,7 +143,10 @@ void MediaControls::MediaSliderMoved(int val)
 void MediaControls::SeekTimerCallback()
 {
 	if (lastSeek != seek) {
-		obs_source_media_set_time(source, GetSliderTime(seek));
+		OBSSource source = OBSGetStrongRef(weakSource);
+		if (source) {
+			obs_source_media_set_time(source, GetSliderTime(seek));
+		}
 		lastSeek = seek;
 	}
 }
@@ -145,7 +169,8 @@ void MediaControls::SetPlayingState()
 	ui->playPauseButton->setProperty("themeID", "pauseIcon");
 	ui->playPauseButton->style()->unpolish(ui->playPauseButton);
 	ui->playPauseButton->style()->polish(ui->playPauseButton);
-	ui->playPauseButton->setToolTip(QTStr("PauseMedia"));
+	ui->playPauseButton->setToolTip(
+		QTStr("ContextBar.MediaControls.PauseMedia"));
 
 	prevPaused = false;
 
@@ -157,7 +182,8 @@ void MediaControls::SetPausedState()
 	ui->playPauseButton->setProperty("themeID", "playIcon");
 	ui->playPauseButton->style()->unpolish(ui->playPauseButton);
 	ui->playPauseButton->style()->polish(ui->playPauseButton);
-	ui->playPauseButton->setToolTip(QTStr("PlayMedia"));
+	ui->playPauseButton->setToolTip(
+		QTStr("ContextBar.MediaControls.PlayMedia"));
 
 	StopMediaTimer();
 }
@@ -167,7 +193,8 @@ void MediaControls::SetRestartState()
 	ui->playPauseButton->setProperty("themeID", "restartIcon");
 	ui->playPauseButton->style()->unpolish(ui->playPauseButton);
 	ui->playPauseButton->style()->polish(ui->playPauseButton);
-	ui->playPauseButton->setToolTip(QTStr("RestartMedia"));
+	ui->playPauseButton->setToolTip(
+		QTStr("ContextBar.MediaControls.RestartMedia"));
 
 	ui->slider->setValue(0);
 	ui->timerLabel->setText("--:--:--");
@@ -179,7 +206,16 @@ void MediaControls::SetRestartState()
 
 void MediaControls::RefreshControls()
 {
-	uint32_t flags = obs_source_get_output_flags(source);
+	OBSSource source;
+	source = OBSGetStrongRef(weakSource);
+
+	uint32_t flags = 0;
+	const char *id = nullptr;
+
+	if (source) {
+		flags = obs_source_get_output_flags(source);
+		id = obs_source_get_unversioned_id(source);
+	}
 
 	if (!source || !(flags & OBS_SOURCE_CONTROLLABLE_MEDIA)) {
 		SetRestartState();
@@ -190,6 +226,10 @@ void MediaControls::RefreshControls()
 		setEnabled(true);
 		show();
 	}
+
+	bool has_playlist = strcmp(id, "ffmpeg_source") != 0;
+	ui->previousButton->setVisible(has_playlist);
+	ui->nextButton->setVisible(has_playlist);
 
 	obs_media_state state = obs_source_media_get_state(source);
 
@@ -211,39 +251,24 @@ void MediaControls::RefreshControls()
 
 OBSSource MediaControls::GetSource()
 {
-	return source;
+	return OBSGetStrongRef(weakSource);
 }
 
-void MediaControls::SetSource(OBSSource newSource)
+void MediaControls::SetSource(OBSSource source)
 {
-	signal_handler_disconnect(obs_source_get_signal_handler(source),
-				  "media_play", OBSMediaPlay, this);
-	signal_handler_disconnect(obs_source_get_signal_handler(source),
-				  "media_pause", OBSMediaPause, this);
-	signal_handler_disconnect(obs_source_get_signal_handler(source),
-				  "media_restart", OBSMediaPlay, this);
-	signal_handler_disconnect(obs_source_get_signal_handler(source),
-				  "media_stopped", OBSMediaStopped, this);
-	signal_handler_disconnect(obs_source_get_signal_handler(source),
-				  "media_started", OBSMediaStarted, this);
-	signal_handler_disconnect(obs_source_get_signal_handler(source),
-				  "media_ended", OBSMediaStopped, this);
-
-	source = newSource;
+	sigs.clear();
 
 	if (source) {
-		signal_handler_connect(obs_source_get_signal_handler(source),
-				       "media_play", OBSMediaPlay, this);
-		signal_handler_connect(obs_source_get_signal_handler(source),
-				       "media_pause", OBSMediaPause, this);
-		signal_handler_connect(obs_source_get_signal_handler(source),
-				       "media_restart", OBSMediaPlay, this);
-		signal_handler_connect(obs_source_get_signal_handler(source),
-				       "media_stopped", OBSMediaStopped, this);
-		signal_handler_connect(obs_source_get_signal_handler(source),
-				       "media_started", OBSMediaStarted, this);
-		signal_handler_connect(obs_source_get_signal_handler(source),
-				       "media_ended", OBSMediaStopped, this);
+		weakSource = OBSGetWeakRef(source);
+		signal_handler_t *sh = obs_source_get_signal_handler(source);
+		sigs.emplace_back(sh, "media_play", OBSMediaPlay, this);
+		sigs.emplace_back(sh, "media_pause", OBSMediaPause, this);
+		sigs.emplace_back(sh, "media_restart", OBSMediaPlay, this);
+		sigs.emplace_back(sh, "media_stopped", OBSMediaStopped, this);
+		sigs.emplace_back(sh, "media_started", OBSMediaStarted, this);
+		sigs.emplace_back(sh, "media_ended", OBSMediaStopped, this);
+	} else {
+		weakSource = nullptr;
 	}
 
 	RefreshControls();
@@ -251,6 +276,11 @@ void MediaControls::SetSource(OBSSource newSource)
 
 void MediaControls::SetSliderPosition()
 {
+	OBSSource source = OBSGetStrongRef(weakSource);
+	if (!source) {
+		return;
+	}
+
 	float time = (float)obs_source_media_get_time(source);
 	float duration = (float)obs_source_media_get_duration(source);
 
@@ -281,6 +311,11 @@ QString MediaControls::FormatSeconds(int totalSeconds)
 
 void MediaControls::on_playPauseButton_clicked()
 {
+	OBSSource source = OBSGetStrongRef(weakSource);
+	if (!source) {
+		return;
+	}
+
 	obs_media_state state = obs_source_media_get_state(source);
 
 	switch (state) {
@@ -301,32 +336,50 @@ void MediaControls::on_playPauseButton_clicked()
 
 void MediaControls::RestartMedia()
 {
-	obs_source_media_restart(source);
+	OBSSource source = OBSGetStrongRef(weakSource);
+	if (source) {
+		obs_source_media_restart(source);
+	}
 }
 
 void MediaControls::PlayMedia()
 {
-	obs_source_media_play_pause(source, false);
+	OBSSource source = OBSGetStrongRef(weakSource);
+	if (source) {
+		obs_source_media_play_pause(source, false);
+	}
 }
 
 void MediaControls::PauseMedia()
 {
-	obs_source_media_play_pause(source, true);
+	OBSSource source = OBSGetStrongRef(weakSource);
+	if (source) {
+		obs_source_media_play_pause(source, true);
+	}
 }
 
 void MediaControls::StopMedia()
 {
-	obs_source_media_stop(source);
+	OBSSource source = OBSGetStrongRef(weakSource);
+	if (source) {
+		obs_source_media_stop(source);
+	}
 }
 
 void MediaControls::PlaylistNext()
 {
-	obs_source_media_next(source);
+	OBSSource source = OBSGetStrongRef(weakSource);
+	if (source) {
+		obs_source_media_next(source);
+	}
 }
 
 void MediaControls::PlaylistPrevious()
 {
-	obs_source_media_previous(source);
+	OBSSource source = OBSGetStrongRef(weakSource);
+	if (source) {
+		obs_source_media_previous(source);
+	}
 }
 
 void MediaControls::on_stopButton_clicked()

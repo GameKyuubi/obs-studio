@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>1079</width>
-    <height>730</height>
+    <height>729</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -215,21 +215,21 @@
         <height>32</height>
        </size>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="horizontalLayout9">
        <property name="spacing">
-        <number>0</number>
+        <number>4</number>
        </property>
        <property name="sizeConstraint">
         <enum>QLayout::SetDefaultConstraint</enum>
        </property>
        <property name="leftMargin">
-        <number>10</number>
+        <number>6</number>
        </property>
        <property name="topMargin">
         <number>4</number>
        </property>
        <property name="rightMargin">
-        <number>10</number>
+        <number>6</number>
        </property>
        <property name="bottomMargin">
         <number>4</number>
@@ -284,32 +284,6 @@
            </widget>
           </item>
           <item>
-           <widget class="VisibilityCheckBox" name="contextVisibilityCheckBox">
-            <property name="maximumSize">
-             <size>
-              <width>16</width>
-              <height>16</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="LockedCheckBox" name="contextLockedCheckBox">
-            <property name="maximumSize">
-             <size>
-              <width>16</width>
-              <height>16</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="Line" name="line_3">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
@@ -357,222 +331,27 @@
            </widget>
           </item>
           <item>
-           <widget class="QWidget" name="contextTransformIcons" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>100</width>
-              <height>0</height>
-             </size>
+           <widget class="Line" name="line">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_6">
-             <property name="spacing">
-              <number>6</number>
-             </property>
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="Line" name="line">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="sourceRotateLeftButton">
-               <property name="toolTip">
-                <string>Rotate Left</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="obs.qrc">
-                 <normaloff>:/res/images/rotate_left.svg</normaloff>:/res/images/rotate_left.svg</iconset>
-               </property>
-               <property name="flat">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="sourceRotateRightButton">
-               <property name="toolTip">
-                <string>Rotate Right</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="obs.qrc">
-                 <normaloff>:/res/images/rotate_right.svg</normaloff>:/res/images/rotate_right.svg</iconset>
-               </property>
-               <property name="flat">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="sourceFlipHorizontallyButton">
-               <property name="toolTip">
-                <string>Flip Horizontally</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="obs.qrc">
-                 <normaloff>:/res/images/flip_horz.svg</normaloff>:/res/images/flip_horz.svg</iconset>
-               </property>
-               <property name="flat">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="sourceFlipVerticallyButton">
-               <property name="toolTip">
-                <string>Flip Vertically</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="obs.qrc">
-                 <normaloff>:/res/images/flip_vert.svg</normaloff>:/res/images/flip_vert.svg</iconset>
-               </property>
-               <property name="flat">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="Line" name="line_2">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="sourceFillScreenButton">
-               <property name="toolTip">
-                <string>Stretch To Screen</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="obs.qrc">
-                 <normaloff>:/res/images/fill_frame.svg</normaloff>:/res/images/fill_frame.svg</iconset>
-               </property>
-               <property name="flat">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="sourceFitScreenButton">
-               <property name="toolTip">
-                <string>Fit To Screen</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="obs.qrc">
-                 <normaloff>:/res/images/fit.svg</normaloff>:/res/images/fit.svg</iconset>
-               </property>
-               <property name="flat">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="sourceCenterButton">
-               <property name="toolTip">
-                <string>Center</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="obs.qrc">
-                 <normaloff>:/res/images/center.svg</normaloff>:/res/images/center.svg</iconset>
-               </property>
-               <property name="flat">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="sourceEditTransformButton">
-               <property name="toolTip">
-                <string>Edit Transform</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="obs.qrc">
-                 <normaloff>:/res/images/edit_transform.svg</normaloff>:/res/images/edit_transform.svg</iconset>
-               </property>
-               <property name="flat">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_4">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Expanding</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
            </widget>
           </item>
          </layout>
         </widget>
        </item>
        <item>
-        <widget class="MediaControls" name="mediaControls" native="true">
+        <widget class="QWidget" name="emptySpace" native="true">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_2">
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <property name="spacing">
+           <number>0</number>
+          </property>
           <property name="leftMargin">
            <number>0</number>
           </property>
@@ -583,9 +362,6 @@
            <number>0</number>
           </property>
           <property name="bottomMargin">
-           <number>0</number>
-          </property>
-          <property name="spacing">
            <number>0</number>
           </property>
          </layout>
@@ -801,6 +577,7 @@
     <addaction name="separator"/>
     <addaction name="viewMenuDocks"/>
     <addaction name="toggleListboxToolbars"/>
+    <addaction name="toggleContextBar"/>
     <addaction name="toggleSourceIcons"/>
     <addaction name="toggleStatusBar"/>
     <addaction name="separator"/>
@@ -824,7 +601,7 @@
   <widget class="OBSBasicStatusBar" name="statusbar"/>
   <widget class="OBSDock" name="scenesDock">
    <property name="features">
-    <set>QDockWidget::DockWidgetClosable|QDockWidget::DockWidgetMovable|QDockWidget::DockWidgetFloatable</set>
+    <set>QDockWidget::AllDockWidgetFeatures</set>
    </property>
    <property name="windowTitle">
     <string>Basic.Main.Scenes</string>
@@ -959,7 +736,7 @@
   </widget>
   <widget class="OBSDock" name="sourcesDock">
    <property name="features">
-    <set>QDockWidget::DockWidgetClosable|QDockWidget::DockWidgetMovable|QDockWidget::DockWidgetFloatable</set>
+    <set>QDockWidget::AllDockWidgetFeatures</set>
    </property>
    <property name="windowTitle">
     <string>Basic.Main.Sources</string>
@@ -1095,7 +872,7 @@
   </widget>
   <widget class="OBSDock" name="mixerDock">
    <property name="features">
-    <set>QDockWidget::DockWidgetClosable|QDockWidget::DockWidgetMovable|QDockWidget::DockWidgetFloatable</set>
+    <set>QDockWidget::AllDockWidgetFeatures</set>
    </property>
    <property name="windowTitle">
     <string>Mixer</string>
@@ -1146,7 +923,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>82</width>
+           <width>92</width>
            <height>16</height>
           </rect>
          </property>
@@ -1200,7 +977,7 @@
            <x>0</x>
            <y>0</y>
            <width>16</width>
-           <height>16</height>
+           <height>28</height>
           </rect>
          </property>
          <property name="sizePolicy">
@@ -1235,7 +1012,7 @@
   </widget>
   <widget class="OBSDock" name="transitionsDock">
    <property name="features">
-    <set>QDockWidget::DockWidgetClosable|QDockWidget::DockWidgetMovable|QDockWidget::DockWidgetFloatable</set>
+    <set>QDockWidget::AllDockWidgetFeatures</set>
    </property>
    <property name="windowTitle">
     <string>Basic.SceneTransitions</string>
@@ -1396,7 +1173,7 @@
   </widget>
   <widget class="OBSDock" name="controlsDock">
    <property name="features">
-    <set>QDockWidget::DockWidgetClosable|QDockWidget::DockWidgetMovable|QDockWidget::DockWidgetFloatable</set>
+    <set>QDockWidget::AllDockWidgetFeatures</set>
    </property>
    <property name="windowTitle">
     <string>Basic.Main.Controls</string>
@@ -2169,6 +1946,17 @@
     <string>Basic.MainMenu.View.Toolbars.Context</string>
    </property>
   </action>
+  <action name="toggleContextBar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Basic.MainMenu.View.ContextBar</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -2214,22 +2002,6 @@
    <class>RecordButton</class>
    <extends>QPushButton</extends>
    <header>record-button.hpp</header>
-  </customwidget>
-  <customwidget>
-   <class>LockedCheckBox</class>
-   <extends>QCheckBox</extends>
-   <header>locked-checkbox.hpp</header>
-  </customwidget>
-  <customwidget>
-   <class>VisibilityCheckBox</class>
-   <extends>QCheckBox</extends>
-   <header>visibility-checkbox.hpp</header>
-  </customwidget>
-  <customwidget>
-   <class>MediaControls</class>
-   <extends>QWidget</extends>
-   <header>media-controls.hpp</header>
-   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>

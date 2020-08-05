@@ -2,6 +2,7 @@
 
 #include <QWidget>
 #include <QTimer>
+#include <vector>
 #include <obs.hpp>
 #include "qt-wrappers.hpp"
 
@@ -11,7 +12,8 @@ class MediaControls : public QWidget {
 	Q_OBJECT
 
 private:
-	OBSSource source = nullptr;
+	std::vector<OBSSignal> sigs;
+	OBSWeakSource weakSource = nullptr;
 	QTimer mediaTimer;
 	QTimer seekTimer;
 	int seek;
