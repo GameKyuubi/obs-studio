@@ -123,7 +123,7 @@ void MediaControls::MediaSliderReleased()
 
 	if (!prevPaused) {
 		PlayMedia();
-		mediaTimer.start(100);
+		mediaTimer.start(1000);
 	}
 }
 
@@ -154,7 +154,7 @@ void MediaControls::SeekTimerCallback()
 void MediaControls::StartMediaTimer()
 {
 	if (!mediaTimer.isActive())
-		mediaTimer.start(100);
+		mediaTimer.start(1000);
 }
 
 void MediaControls::StopMediaTimer()
@@ -247,6 +247,8 @@ void MediaControls::RefreshControls()
 	default:
 		break;
 	}
+
+	SetSliderPosition();
 }
 
 OBSSource MediaControls::GetSource()

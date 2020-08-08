@@ -235,6 +235,7 @@ set(obs_SOURCES
 	volume-control.cpp
 	adv-audio-control.cpp
 	item-widget-helpers.cpp
+	context-bar-controls.cpp
 	horizontal-scroll-area.cpp
 	vertical-scroll-area.cpp
 	visibility-item-widget.cpp
@@ -302,6 +303,7 @@ set(obs_HEADERS
 	adv-audio-control.hpp
 	item-widget-helpers.hpp
 	visibility-checkbox.hpp
+	context-bar-controls.hpp
 	locked-checkbox.hpp
 	horizontal-scroll-area.hpp
 	expand-checkbox.hpp
@@ -335,6 +337,13 @@ source_group("importers\\Source Files" FILES ${obs_importers_SOURCES})
 source_group("importers\\Header Files" FILES ${obs_importers_HEADERS})
 
 set(obs_UI
+	forms/source-toolbar/browser-source-toolbar.ui
+	forms/source-toolbar/device-select-toolbar.ui
+	forms/source-toolbar/game-capture-toolbar.ui
+	forms/source-toolbar/image-source-toolbar.ui
+	forms/source-toolbar/color-source-toolbar.ui
+	forms/source-toolbar/text-source-toolbar.ui
+	forms/source-toolbar/slideshow-toolbar.ui
 	forms/NameDialog.ui
 	forms/AutoConfigStartPage.ui
 	forms/AutoConfigVideoPage.ui
